@@ -9,6 +9,7 @@ import Menu from "../menu_color/menu/Menu";
 const Content = () => {
   const [changeColorItem, setChangeColorItem] = useState("");
   const [changeFontColorItem, setChangeFontColorItem] = useState("");
+  const [cartIsShown, setCartIsShown] = useState(false);
 
   const changeColorItemHandler = (data) => {
     setChangeColorItem(data);
@@ -18,12 +19,11 @@ const Content = () => {
     setChangeFontColorItem(data);
   };
 
-  const [cartIsShown, setCartIsShown] = useState(false);
 
-  const showCartHandler = () => {
+  const showCartHandler = () => {// open modal
     setCartIsShown(true);
   };
-  const hideCartHandler = () => {
+  const hideCartHandler = () => {//  close modal
     setCartIsShown(false);
   };
 

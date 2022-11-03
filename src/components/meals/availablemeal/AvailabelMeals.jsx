@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "../../UI/card/Card";
 import MealItem from "../meal_item/MealItem";
-import cls from "./AvaiLabelMeals.module.css";
+import cls from "./AvailabelMeals.module.css";
 
 const DUMMY_MEALS = [
   {

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import ChangeColor from "../../../store/ChangeColor";
 import { MealStyle } from "../../menu_color/style/Style";
-import AvaiLableMeals from "../avail-able-meal/AvaiLabelMeals";
+import AvaiLableMeals from "../availablemeal/AvailabelMeals";
 import MealSummery from "../meals-summery/MealSummery";
 
 const Meal = () => {

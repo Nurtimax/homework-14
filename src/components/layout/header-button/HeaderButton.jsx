@@ -5,14 +5,13 @@ import CartIcon from "../../icons/CartIcon";
 import cls from "./HeaderButton.module.css";
 
 const HeaderButton = () => {
-
-  const {openModal} = useContext(ChangeColor)
-  const {items} = useContext(CartContext)
+  const { openModal } = useContext(ChangeColor);
+  const { items } = useContext(CartContext);
 
   const countOfCartItems = items.reduce((currentNum, item) => {
-    console.log(item);
-    return currentNum + item.amount
-  },0)
+    // add болгондо cart тын count ка кошулат
+    return currentNum + item.amount;
+  }, 0);
 
   return (
     <button className={cls.button} onClick={openModal}>

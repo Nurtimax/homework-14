@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import cls from "./MealItem.module.css";
 import MealItemForm from "../meal_item_form/MealItemForm";
 import CartContext from "../../../store/cart-context";
@@ -9,6 +9,7 @@ const MealItem = ({ name, decription, price, id }) => {
   const { addItem } = useContext(CartContext);
 
   const addToCcartHandler = (amount) => {
+    //  кнопка басылганда addItem функцияга обьект барат
     addItem({
       id: id,
       amount: amount,
@@ -18,8 +19,6 @@ const MealItem = ({ name, decription, price, id }) => {
     });
   };
 
-  
-
   return (
     <li className={cls.meal}>
       <div>
@@ -27,7 +26,7 @@ const MealItem = ({ name, decription, price, id }) => {
         <p className={cls.decription}>{decription}</p>
         <p className={cls.price}>${newPrice}</p>
       </div>
-      
+
       <div>
         <MealItemForm id={id} onHandler={addToCcartHandler} />
       </div>

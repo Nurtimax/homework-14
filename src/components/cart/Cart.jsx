@@ -10,12 +10,11 @@ const Cart = () => {
   const { items, totalAmount, addItem, removeItem } = useContext(CartContext);
   console.log(items);
 
-  const cartItemREmoveHandler = (id) => {
+  const cartItemREmoveHandler = (id) => { // for remote item
     removeItem(id);
   };
 
-  const cartitemAddHandler = (item) => {
-    console.log(item);
+  const cartitemAddHandler = (item) => { // for add item
     addItem(item);
   };
 
@@ -38,7 +37,7 @@ const Cart = () => {
 
   return (
     <Modal>
-      {cartItems}
+      {cartItems}  { /* after map */}
       <div className={cls.total}>
         <span>Total Amount</span>
         <span>$ {+totalAmount.toFixed(2)}</span>

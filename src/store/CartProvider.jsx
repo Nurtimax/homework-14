@@ -7,13 +7,16 @@ const initialState = {
 };
 
 const reducer = (state, action) => {
+  // // state мурунку стат бар
+  // // action жаны келген value бар
   switch (action.type) {
     case "ADD":
       // const updateItems = state.items.concat(action.item);
-      const updateAmoount = state.totalAmount + action.item.price;
+      const updateAmount = state.totalAmount + action.item.price;
       // state.totalAmount + action.item.price * action.item.amount;
 
       const existingCartItemHanlder = state.items?.findIndex(
+        // //  state те жаткан element тердин indexтерин алып берет
         (item) => item.id === action.item.id
       );
 
@@ -33,42 +36,40 @@ const reducer = (state, action) => {
         updatesItems = state.items.concat(action.item);
       }
 
-
-
       return {
         items: updatesItems,
-        totalAmount: updateAmoount,
+        totalAmount: updateAmount,
       };
 
-      case 'REMOVE': {
-        const existingCartItemIndex = state.items.findIndex((item) => item.id  === action.id)
+    case "REMOVE": {
+      const existingCartItemIndex = state.items.findIndex(
+        // //  state те жаткан element тердин indexтерин алып берет
+        (item) => item.id === action.id
+      );
 
-        const existingItem = state.items[existingCartItemIndex]
+      const existingItem = state.items[existingCartItemIndex];
 
-        const updatedTotalAmount = state.totalAmount - existingItem.price
+      const updatedTotalAmount = state.totalAmount - existingItem.price;
 
-        let updatedItems
+      let updatedItems;
 
-        if (existingItem.amount === 1) {
-          updatedItems = state.items.filter((item) => item.id !== action.id)
-        }
-        else {
-          const updatedItem = {
-            ...existingItem,
-            amount: existingItem.amount - 1
-          }
+      if (existingItem.amount === 1) { // эгер amount 1 барабар болсо filter болот
+        updatedItems = state.items.filter((item) => item.id !== action.id);
+      } else { // эгер amount 1 барабар болбосо анда  amount ту 1ге кемитип кой
+        const updatedItem = {
+          ...existingItem,
+          amount: existingItem.amount - 1,
+        };
 
-          updatedItems = [...state.items]
-          updatedItems[existingCartItemIndex] = updatedItem
-        }
-
-        return {
-          items: updatedItems,
-          totalAmount: updatedTotalAmount
-        }
+        updatedItems = [...state.items];
+        updatedItems[existingCartItemIndex] = updatedItem;
       }
 
-
+      return {
+        items: updatedItems,
+        totalAmount: updatedTotalAmount,
+      };
+    }
 
     default:
       return state;
@@ -79,10 +80,12 @@ const CartProvider = ({ children }) => {
   const [cartState, dispatch] = useReducer(reducer, initialState);
 
   const addItemToCartHandler = (item) => {
+    // корзинадагы count жана element кошуш учун
     dispatch({ type: "ADD", item: item });
   };
   const removeItemToCartHandler = (id) => {
-    dispatch({type: 'REMOVE', id: id})
+    // корзинадагы count жана element кошуш учун
+    dispatch({ type: "REMOVE", id: id });
   };
 
   return (
